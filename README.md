@@ -4,6 +4,7 @@ A collection of classic Unix command-line utilities reimplemented in **Go**.
 This project is designed to deepen my understanding of Go (file I/O, string processing, concurrency, testing) while building a practical toolkit.
 
 ![Go Version](https://img.shields.io/badge/Go-1.25+-00ADD8?logo=go&logoColor=white)
+![CI](https://github.com/Priyaa-18/unix-tools/actions/workflows/ci.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
 Currently implemented:
