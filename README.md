@@ -3,11 +3,13 @@
 A collection of classic Unix command-line utilities reimplemented in **Go**.  
 This project is designed to deepen my understanding of Go (file I/O, string processing, concurrency, testing) while building a practical toolkit.
 
+![Go Version](https://img.shields.io/badge/Go-1.25+-00ADD8?logo=go&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
 Currently implemented:
-- `wc` (line count version)
+- `wc`
 
 Planned tools:
-- `wc` (full: lines, words, bytes, characters)
 - `cut`
 - `sort`
 - `uniq`
@@ -48,13 +50,25 @@ go run ./cmd/wc test.txt
 
 ## Implemented Tools
 **`wc` (word count)**  
-Counts the number of lines in a file.  
-*Current version:* counts lines only.  
-*Next milestone:* add word, byte, and character counts.
+Supports:
+- `-l` → count lines  
+- `-w` → count words  
+- `-c` → count bytes  
+- `-m` → count characters  
+
+Default (no flags): shows all counts.
 
 Usage:
 ```bash
-go run ./cmd/wc <filename>
+echo -e "hello\nworld\nhi" > test.txt
+
+# All counts
+go run ./cmd/wc test.txt
+# Output: 3 3 15 15 test.txt
+
+# Lines only
+go run ./cmd/wc -l test.txt
+# Output: 3 test.txt
 ```
 
 ---
@@ -86,20 +100,24 @@ go test ./...
 ---
 
 ## Roadmap
-- Initialize repo with `go.mod`
-- Add `wc` (line count)
-- Extend `wc` to word, byte, char counts
-- Add `cut` (delimiter + field extraction)
-- Add `sort` (lexicographic, numeric, reverse)
-- Add `uniq` (deduplicate, count)
-- Add automated testing and GitHub Actions CI
-- Package as installable binaries
+- ✅ Initialize repo with `go.mod`
+- ✅ Add `wc` (full: lines, words, bytes, characters)
+- ⏳ Add `cut` (delimiter + field extraction)
+- ⏳ Add `sort` (lexicographic, numeric, reverse)
+- ⏳ Add `uniq` (deduplicate, count)
+- ⏳ Add automated testing and GitHub Actions CI
+- ⏳ Package as installable binaries
 
 ---
 
 ## Contributing
 Contributions are welcome!  
-For new tools or feature requests, open an issue or submit a pull request.
+
+1. Fork the repo
+2. Create a feature branch
+3. Add tests for new features
+4. Ensure all tests pass
+5. Submit a PR
 
 ---
 
