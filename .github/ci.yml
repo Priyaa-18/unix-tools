@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: true
+
+      - name: Go version
+        run: go version
+
+      - name: Verify formatting (gofmt)
+        run: |
+          fmt_out=$(gofmt -s -l .)
+          if [ -n "$fmt_out" ]; then
+            echo "These files need gofmt -s:"
+            echo "$fmt_out"
+            exit 1
+          fi
+
+      - name: Build all commands
+        run: go build ./...
+
+      - name: Vet (static checks)
+        run: go vet ./...
+
+      - name: Run tests
+        run: go test -v ./...
